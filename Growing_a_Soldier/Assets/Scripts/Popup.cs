@@ -34,7 +34,7 @@ public class Popup : MonoBehaviour
             SPop.DOLocalMove(new Vector2(250, -630), 1f, false);
             InPop.DOLocalMove(new Vector2(540, -630), 1f, false);
         }
-        else if (c == 2)
+        else if (c > 1.8)
         {
             UpPop.DOLocalMove(new Vector2(1700, 50), 1f, false);
             BPop.DOLocalMove(new Vector2(950, -630), 1f, false);
@@ -52,7 +52,7 @@ public class Popup : MonoBehaviour
             SPop.DOLocalMove(new Vector2(250, -430), 1f, false);
             InPop.DOLocalMove(new Vector2(540, -430), 1f, false);
         }
-     else if(c >= 2)
+     else if(c > 1.8)
         {
             UpPop.DOLocalMove(new Vector2(530, 50), 1f, false);
             BPop.DOLocalMove(new Vector2(950, -430), 1f, false);
