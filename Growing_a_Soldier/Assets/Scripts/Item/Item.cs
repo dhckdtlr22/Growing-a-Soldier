@@ -17,7 +17,14 @@ public class Item : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       if(buy == true)
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<Image>().color = Color.black;
+        }
     }
     public void Click()
     {

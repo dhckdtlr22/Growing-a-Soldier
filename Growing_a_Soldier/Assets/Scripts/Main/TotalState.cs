@@ -81,12 +81,22 @@ public class TotalState : MonoBehaviour
 
     public Inventori inventori;
 
+    public tutorial Tutorial;
     public GameObject CamChage;
     public GameObject Cam;
+    public Item[] items;
     public void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         Screen.orientation = ScreenOrientation.LandscapeLeft;
-        //Importdata();
+        if(PlayerPrefs.GetString("PlayerState") == "")
+        {
+
+        }
+        else
+        {
+            Importdata();
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -103,7 +113,7 @@ public class TotalState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //JSONdate();
+        JSONdate();
 
         UnitTotalDamage = UnitDamage + LvDamage +EpicUnitSkillDMG + ItemDamage;
         CastleUpgradeCost = int.Parse(data[CastleUpgradeLv]["CastleCost"].ToString());
@@ -166,15 +176,14 @@ public class TotalState : MonoBehaviour
             CamChage.SetActive(false);
             Cam.SetActive(false);
         }
+        
+        
     }
     public void StageUp()
     {
         Stage++;
         
-        if (enemyMaker.CountMax < 2000)
-        {
-            enemyMaker.CountMax  = 10 + Stage;
-        }
+        
     }
     public void JSONdate()
     {
@@ -191,7 +200,17 @@ public class TotalState : MonoBehaviour
         PlayerState["PlayerExpMax"] = PlayerExpMax;
         PlayerState["LvDamage"] = LvDamage;
         PlayerState["Stage"] = Stage;
-
+        PlayerState["Invent"] = inventori.itemNum;
+        PlayerState["Quest"] = Tutorial.Quest;
+        PlayerState["QuestClear"] = Tutorial.QuestClear;
+        Debug.Log("Save...");
+        for (int i = 0; i < items.Length; i++)
+        {
+            if(items[i].buy == true)
+            {
+                PlayerState[$"item{i}"] = true;
+            }
+        }
         PlayerPrefs.SetString("PlayerState", PlayerState.ToString());
         
     }
@@ -212,8 +231,15 @@ public class TotalState : MonoBehaviour
         PlayerExpMax = int.Parse(PlayerState["PlayerExpMax"]);
         LvDamage = int.Parse(PlayerState["LvDamage"]);
         Stage = int.Parse(PlayerState["Stage"]);
-  
-
+        Tutorial.Quest = int.Parse(PlayerState["Quest"]);
+        Tutorial.QuestClear = bool.Parse(PlayerState["QuestClear"]);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (PlayerState[$"item{i}"] == true)
+            {
+                items[i].buy = bool.Parse(PlayerState[$"item{i}"]);
+            }
+        }
 
     }
     public void ShootVolume()

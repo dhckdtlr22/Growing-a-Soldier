@@ -43,8 +43,12 @@ public class EnemyMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(IsBattle ==true)
+
+        if (CountMax < 2000)
+        {
+            CountMax = 10 + totalState.Stage;
+        }
+        if (IsBattle ==true)
         {
             AtiveBut.SetActive(true);
             IsClear = false;

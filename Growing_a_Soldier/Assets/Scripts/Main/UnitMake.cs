@@ -30,9 +30,22 @@ public class UnitMake : MonoBehaviour
             EpicPos[i] = GameObject.Find($"EpicUnitPos{i + 1}").GetComponent<Transform>();
 
         }
-        GameObject Unit = Instantiate(UnitPrefab, Pos[total.UnitNum].position, transform.rotation);
-        Unit.name = $"Unit{total.UnitNum}";
-        total.UnitNum = 1;
+        for (int i = 0; i <= total.UnitNum; i++)
+        {
+            GameObject Unit = Instantiate(UnitPrefab, Pos[i].position, transform.rotation);
+            Unit.name = $"Unit{total.UnitNum}";
+            
+        }
+        for (int i = 0; i <= total.EpicUnitNum-1; i++)
+        {
+            GameObject EpicUnit = Instantiate(EpicUnitPrefab, EpicPos[i].position, transform.rotation);
+            EpicUnit.name = $"EpicUnit{total.EpicUnitNum}";
+            
+        }
+        if(total.UnitNum == 0)
+        {
+            total.UnitNum = 1;
+        }
     }
 
     // Update is called once per frame

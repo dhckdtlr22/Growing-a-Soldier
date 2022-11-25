@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
     public int NeedCoin;
-    public Image Myimg;
     public Item Item;
     public TotalState total;
     public bool buy; 
@@ -32,7 +31,6 @@ public class Shop : MonoBehaviour
                 Tutorial.QuestClear = true;
             }
             total.MyCoin -= NeedCoin;
-            Myimg.color = Color.white;
             Item.buy = true;
             buy = true;
         }

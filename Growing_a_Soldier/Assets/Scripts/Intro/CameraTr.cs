@@ -21,7 +21,8 @@ public class CameraTr : MonoBehaviour
     void Start()
     {
         DOTween.Init();
-       
+
+        Curtime = 4;
     }
 
     // Update is called once per frame
