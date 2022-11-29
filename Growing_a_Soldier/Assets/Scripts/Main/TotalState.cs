@@ -87,7 +87,7 @@ public class TotalState : MonoBehaviour
     public Item[] items;
     public void Awake()
     {
-        //PlayerPrefs.DeleteAll();
+        
         Screen.orientation = ScreenOrientation.LandscapeLeft;
         if(PlayerPrefs.GetString("PlayerState") == "")
         {
@@ -165,6 +165,10 @@ public class TotalState : MonoBehaviour
             MyCoin = 1000000000;
             
         }
+        else if(hide.textComponent.text == "Reset")
+        {
+            PlayerPrefs.DeleteAll();
+        }
         ShootVolume();
         
         if(enemyMaker.IsBattle == true)
@@ -203,7 +207,6 @@ public class TotalState : MonoBehaviour
         PlayerState["Invent"] = inventori.itemNum;
         PlayerState["Quest"] = Tutorial.Quest;
         PlayerState["QuestClear"] = Tutorial.QuestClear;
-        Debug.Log("Save...");
         for (int i = 0; i < items.Length; i++)
         {
             if(items[i].buy == true)

@@ -33,13 +33,13 @@ public class UnitMake : MonoBehaviour
         for (int i = 0; i <= total.UnitNum; i++)
         {
             GameObject Unit = Instantiate(UnitPrefab, Pos[i].position, transform.rotation);
-            Unit.name = $"Unit{total.UnitNum}";
+            Unit.name = $"Unit{i}";
             
         }
         for (int i = 0; i <= total.EpicUnitNum-1; i++)
         {
             GameObject EpicUnit = Instantiate(EpicUnitPrefab, EpicPos[i].position, transform.rotation);
-            EpicUnit.name = $"EpicUnit{total.EpicUnitNum}";
+            EpicUnit.name = $"EpicUnit{i}";
             
         }
         if(total.UnitNum == 0)

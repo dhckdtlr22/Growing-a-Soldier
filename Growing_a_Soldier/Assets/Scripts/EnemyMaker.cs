@@ -32,6 +32,7 @@ public class EnemyMaker : MonoBehaviour
     public EnemyState enemyState;
     
     public GameObject AtiveBut;
+    public BattleStart battle;
     // Start is called before the first frame update
     private void Start()
     {
@@ -48,8 +49,8 @@ public class EnemyMaker : MonoBehaviour
         {
             CountMax = 10 + totalState.Stage;
         }
-        if (IsBattle ==true)
-        {
+        if (IsBattle == true && battle.Istrue == false)
+        {   
             AtiveBut.SetActive(true);
             IsClear = false;
             curtime += Time.deltaTime;

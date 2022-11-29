@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ButtonMgr : MonoBehaviour
 {
     public EnemyMaker enemyMaker;
@@ -13,6 +13,9 @@ public class ButtonMgr : MonoBehaviour
     public TotalState total;
     public Popup pop;
     public tutorial Tutorial;
+    public GameObject battleStart;
+    public GameObject Text;
+    
     public void Start()
     {
         pop = GetComponent<Popup>();
@@ -24,9 +27,10 @@ public class ButtonMgr : MonoBehaviour
         {
             Tutorial.QuestClear = true;
         }
+        battleStart.SetActive(true);
+        Text.GetComponent<Text>().text = $"ROUND START\nSTAGE{total.Stage}";
+        Text.SetActive(true);
         pop.Battle();
-        Cancel.SetActive(true);
-        StartCoroutine(CancelClose());
         enemyMaker.IsBattle = true;
         enemyMaker.MonsterCount = 0;
     }
@@ -48,12 +52,6 @@ public class ButtonMgr : MonoBehaviour
         ClosePop.SetActive(false);
         pop.Close();
     }
-    IEnumerator CancelClose()
-    {
-        yield return new WaitForSeconds(1f);
-        Cancel.SetActive(false);
-    }
-
     public void Skill01()
     {
        
@@ -108,6 +106,7 @@ public class ButtonMgr : MonoBehaviour
             Option.SetActive(false);
             Cancel.SetActive(false);
             total.CastleHp = total.CastleHpMax;
+            enemyMaker.KillCount = 0;
         }
        
     }

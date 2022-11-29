@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraChange : MonoBehaviour
 {
     public GameObject Camera;
+    public GameObject BG;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +22,11 @@ public class CameraChange : MonoBehaviour
         if(Camera.activeSelf == true)
         {
             Camera.SetActive(false);
+            BG.SetActive(false);
         }
         else
         {
+            BG.SetActive(true);
             Camera.SetActive(true);
         }
        
