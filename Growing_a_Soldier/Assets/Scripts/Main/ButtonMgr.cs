@@ -37,15 +37,18 @@ public class ButtonMgr : MonoBehaviour
     public void  Shop()
     {
         Shoppop.SetActive(true);
+        Cancel.SetActive(true);
     }
     public void Inventro()
     {
         Invent.SetActive(true);
+        Cancel.SetActive(true);
     }
     public void Close()
     {
         Shoppop.SetActive(false);
         Invent.SetActive(false);
+        Cancel.SetActive(false);
     }
     public void ClosePopUp()
     {

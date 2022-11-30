@@ -18,10 +18,19 @@ public class GargoriScripts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Check == true)
+        if (player.IsClick == true && Check == true)
         {
+
             transform.position = dir;
             transform.rotation = Qudir;
+        }
+        else if (player.IsClick == false)
+        {
+            Debug.Log("1111");
+            Speed = FristSpeed;
+            Check = false;
+            transform.position = player.transform.position;
+            dir = transform.position;
         }
        
     }
@@ -38,11 +47,14 @@ public class GargoriScripts : MonoBehaviour
             player.dir = player.transform.position;
             player.State = Player.PlayerSTATE.DOWN;
         }
-        else
+        
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Wall"))
         {
-            Check = false;
-            Speed = FristSpeed;
-            dir = Vector3.zero;
+            float dirY = transform.position.y;
+            dir = new Vector3(0, dirY, other.transform.position.z); 
         }
     }
 }

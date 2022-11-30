@@ -22,6 +22,7 @@ public class EpicUnitState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MezzlePrefab = transform.GetChild(1).gameObject;
         anime = GetComponentInChildren<Animator>();
         enemyMaker = GameObject.Find("EnemyMake").GetComponent<EnemyMaker>();
         attackZone = GameObject.Find("AttackZone").GetComponent<AttackZone>();
@@ -47,7 +48,8 @@ public class EpicUnitState : MonoBehaviour
                 if (Attackcur > Attackcool)
                 {
                     shootAudio.Play();
-                    Instantiate(MezzlePrefab, MPos.transform.position, MPos.transform.rotation);
+                    MezzlePrefab.SetActive(true);
+                    StartCoroutine(Wait());
                     Instantiate(Effect, enemyState.gameObject.transform.position, Quaternion.LookRotation(-enemyState.transform.position.normalized));
                     if (enemyState.gameObject.name == "Enemy")
                     {
@@ -67,5 +69,10 @@ public class EpicUnitState : MonoBehaviour
             }
             
         }
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        MezzlePrefab.SetActive(false);
     }
 }

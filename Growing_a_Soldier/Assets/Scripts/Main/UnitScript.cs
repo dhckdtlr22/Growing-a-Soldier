@@ -30,8 +30,8 @@ public class UnitScript : MonoBehaviour
         invent = GameObject.Find("ItemMgr").GetComponent<Inventori>();
         anime = GetComponentInChildren<Animator>();
         shootAudio = GetComponent<AudioSource>();
-      
 
+        MezzlePrefab = transform.GetChild(1).gameObject;
         enemyMaker = GameObject.Find("EnemyMake").GetComponent<EnemyMaker>();
         attackZone = GameObject.Find("AttackZone").GetComponent<AttackZone>(); 
         totalState = GameObject.Find("TotalState").GetComponent<TotalState>();
@@ -57,14 +57,15 @@ public class UnitScript : MonoBehaviour
                     rand = 0;
                     transform.LookAt(attackZone.Enemy[rand].transform);
                 }
-                
 
+                
                 anime.SetTrigger("Attack");
                 enemyState = attackZone.Enemy[rand].GetComponent<EnemyState>();
                 Attackcur += Time.deltaTime;
                 if (Attackcur > Attackcool)
                 {
-                    Instantiate(MezzlePrefab, MPos.transform.position,MPos.transform.rotation);
+                    MezzlePrefab.SetActive(true);
+                    StartCoroutine(Wait());
                     shootAudio.Play();
                     Instantiate(Effect, enemyState.gameObject.transform.position, Quaternion.LookRotation(-enemyState.transform.position.normalized));
                     if (enemyState.gameObject.name == "Enemy")
@@ -89,8 +90,10 @@ public class UnitScript : MonoBehaviour
             }
             
         }
-      
-        
-        
+    }
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        MezzlePrefab.SetActive(false);
     }
 }

@@ -54,6 +54,10 @@ public class EnemyMaker : MonoBehaviour
             AtiveBut.SetActive(true);
             IsClear = false;
             curtime += Time.deltaTime;
+            if(cooltime <0.1f)
+            {
+                cooltime = 0.1f;
+            }
             if(totalState.Stage%5 == 0)
             {
                 
@@ -146,6 +150,7 @@ public class EnemyMaker : MonoBehaviour
         }
         else if(IsBattle == false)
         {
+            curtime = 0;
             AtiveBut.SetActive(false);
             AtiveBut.GetComponent<ItemAtive>().Curtime = 0;
             EnemyCountText.text = $"Stage {totalState.Stage}";
