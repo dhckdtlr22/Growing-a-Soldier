@@ -253,6 +253,7 @@ public class TotalState : MonoBehaviour
         {
             ShootAudio[i].volume = Volume.value;
         }
+        
         PlayerPrefs.SetFloat("ShootAudio", Volume.value);
     }
    

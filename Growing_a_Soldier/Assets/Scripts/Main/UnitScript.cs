@@ -68,7 +68,7 @@ public class UnitScript : MonoBehaviour
                     StartCoroutine(Wait());
                     shootAudio.Play();
                     Instantiate(Effect, enemyState.gameObject.transform.position, Quaternion.LookRotation(-enemyState.transform.position.normalized));
-                    if (enemyState.gameObject.name == "Enemy")
+                    if(enemyState.gameObject.CompareTag("Enemy"))
                     {
                         
                         enemyState.Hp -= totalState.UnitTotalDamage;

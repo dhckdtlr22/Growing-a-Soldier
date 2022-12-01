@@ -8,6 +8,7 @@ TagManager:
   - AttackZone
   - Enemy
   - shield
+  - Boss
   layers:
   - Default
   - TransparentFX
