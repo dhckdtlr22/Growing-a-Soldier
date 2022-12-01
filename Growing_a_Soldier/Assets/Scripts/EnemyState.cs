@@ -55,6 +55,7 @@ public class EnemyState : MonoBehaviour
         total = GameObject.Find("TotalState").GetComponent<TotalState>();
         state = State.MOVE;
         BossMaxHp = BossHp;
+        
     }
 
     // Update is called once per frame
@@ -67,7 +68,7 @@ public class EnemyState : MonoBehaviour
                 case State.IDLE:
                     break;
                 case State.MOVE:
-                    if (gameObject.name == "Enemy")
+                    if (gameObject.CompareTag("Enemy"))
                     {
                         transform.Translate(0, 0, -Speed * Time.deltaTime * 10);
                     }
@@ -82,7 +83,7 @@ public class EnemyState : MonoBehaviour
                     if (Attackcur > AttackCool)
                     {
                         
-                        if(gameObject.name =="Enemy")
+                        if(gameObject.CompareTag("Enemy"))
                         {
                             
                             total.CastleHp -= Damage;
@@ -123,8 +124,9 @@ public class EnemyState : MonoBehaviour
                 total.PlayerExp += BossDropExp;
                 total.ExpCheck += DropExp;
                 total.CoinCheck += DropCoin;
-                
-                Destroy(gameObject);
+
+                gameObject.SetActive(false);
+
             }
         }
         if(BossHp >BossMaxHp)
@@ -166,7 +168,12 @@ public class EnemyState : MonoBehaviour
         total.ExpCheck += DropExp;
         total.CoinCheck += DropCoin;
         state = State.IDLE;
-        Destroy(gameObject, 1.5f);
+        StartCoroutine(die());
+    }
+    IEnumerator die()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
     
 }

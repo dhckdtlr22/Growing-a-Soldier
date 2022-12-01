@@ -30,6 +30,7 @@ public class UnitMake : MonoBehaviour
             EpicPos[i] = GameObject.Find($"EpicUnitPos{i + 1}").GetComponent<Transform>();
 
         }
+
         for (int i = 0; i < total.UnitNum; i++)
         {
             GameObject Unit = Instantiate(UnitPrefab, Pos[i].position, transform.rotation);

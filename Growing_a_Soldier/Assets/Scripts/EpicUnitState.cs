@@ -27,6 +27,7 @@ public class EpicUnitState : MonoBehaviour
         enemyMaker = GameObject.Find("EnemyMake").GetComponent<EnemyMaker>();
         attackZone = GameObject.Find("AttackZone").GetComponent<AttackZone>();
         totalState = GameObject.Find("TotalState").GetComponent<TotalState>();
+        totalState.ShootAudio.Add(GetComponent<AudioSource>());
     }
 
     // Update is called once per frame
@@ -51,7 +52,7 @@ public class EpicUnitState : MonoBehaviour
                     MezzlePrefab.SetActive(true);
                     StartCoroutine(Wait());
                     Instantiate(Effect, enemyState.gameObject.transform.position, Quaternion.LookRotation(-enemyState.transform.position.normalized));
-                    if (enemyState.gameObject.name == "Enemy")
+                    if (enemyState.CompareTag("Enemy"))
                     {
                         enemyState.Hp -= totalState.EpicUnitDamage;
                         Attackcur = 0;
