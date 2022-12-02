@@ -93,7 +93,7 @@ public class ItemAtive : MonoBehaviour
                     break;
                 case 1:
                    GameObject boom = Instantiate(Boom, Zone.transform.position, Zone.transform.rotation);
-                    Destroy(boom, 0.1f);
+                    Destroy(boom, 1f);
                     break;
                 case 2:
                     GameObject Shield = Instantiate(shield, WallTr.transform.position, WallTr.transform.rotation);
